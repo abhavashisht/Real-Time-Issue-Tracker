@@ -1,0 +1,14 @@
+{
+  "issues": [
+    {
+      "id": 1,
+      "title": "web dev exception",
+      "description": "exception in authentication",
+      "status": "Open",
+      "createdBy": "abha",
+      "createdAt": "2025-10-08T06:22:05.390Z",
+      "comments": []
+    }
+  ],
+  "nextId": 2
+}
