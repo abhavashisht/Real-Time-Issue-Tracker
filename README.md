@@ -1,30 +1,80 @@
-Real-Time Issue Tracker
+Real-Time Issue Tracker (Node.js, Express, WebSocket)
 
-The Real-Time Issue Tracker is a lightweight and efficient issue tracking system built using Node.js, Express, and WebSockets. It allows users to create, update, and track issues in real time without requiring a page refresh.
+This project provides a simple real-time issue tracking system using Node.js, Express, and WebSocket.
+It allows users to create, update, and manage issues with instant updates across connected clients.
 
-Features
+Overview
 
-Real-time issue updates through WebSockets.
+The application exposes a REST API and WebSocket endpoint to manage issue-related operations.
+It uses a local JSON file for data persistence.
 
-Create, update, and delete issues.
+HTTP API (port 3000) — exposes:
 
-Issues stored in a local JSON file (issues.json).
+GET /issues — Fetch all issues
 
-Simple and clean server setup using Express.
+POST /issues — Create a new issue
 
-Lightweight and easy to extend.
+PUT /issues/:id — Update an existing issue
 
-Technology Stack
+DELETE /issues/:id — Delete an issue
 
-Backend: Node.js, Express.js
+WebSocket — broadcasts issue updates in real time to all connected clients.
 
-WebSockets: ws
+Requirements
 
-Data Storage: JSON file
+Node.js 18.x or higher
 
-Middleware: body-parser
+npm (Node Package Manager)
 
-Project Structure
+WebSocket client or frontend to interact with the server
+
+1) Installation
+
+Clone the repository and install dependencies:
+
+git clone https://github.com/your-username/Real-Time-Issue-Tracker.git
+cd Real-Time-Issue-Tracker
+npm install
+
+2) Running the Server
+
+Start the server with:
+
+npm start
+
+
+By default, the server runs on http://localhost:3000.
+
+3) API Endpoints
+Method	Endpoint	Description
+GET	/issues	Fetch all issues
+POST	/issues	Create a new issue
+PUT	/issues/:id	Update an issue
+DELETE	/issues/:id	Delete an issue
+
+Example POST request:
+
+POST /issues
+Content-Type: application/json
+
+{
+  "title": "Login page error",
+  "description": "Login page crashes when user enters invalid data",
+  "status": "open"
+}
+
+4) WebSocket Events
+Event Name	Description
+new-issue	Broadcasts when a new issue is created
+update-issue	Broadcasts when an existing issue is updated
+delete-issue	Broadcasts when an issue is deleted
+issue-list	Sends the updated issue list to all clients
+
+To connect to the WebSocket server:
+
+ws://localhost:3000
+
+5) Project Structure
 Real-Time-Issue-Tracker/
 │── server.js              # Main server file
 │── issues.json            # Data storage for issues
@@ -33,79 +83,28 @@ Real-Time-Issue-Tracker/
 │── node_modules/          # Dependencies
 └── README.md
 
-Installation
-
-Ensure that Node.js
- is installed on your system.
-
-Clone the repository:
-
-git clone https://github.com/your-username/Real-Time-Issue-Tracker.git
-
-
-Navigate to the project directory:
-
-cd Real-Time-Issue-Tracker
-
-
-Install the required dependencies:
-
-npm install
-
-Usage
-
-To start the server, run:
-
-npm start
-
-
-The server will start on http://localhost:3000 by default.
-
-Once the server is running, users can connect through a WebSocket client or integrate it with a frontend interface to create and track issues in real time.
-
-WebSocket Events
-Event Name	Description
-new-issue	Triggered when a new issue is created
-update-issue	Triggered when an existing issue is updated
-delete-issue	Triggered when an issue is deleted
-issue-list	Sends the updated list of issues to all clients
-Example Request
-
-Add New Issue (POST)
-
-POST /issues
-Content-Type: application/json
-
-{
-  "title": "Login bug",
-  "description": "User cannot log in with valid credentials",
-  "status": "open"
-}
-
-Dependencies
+6) Dependencies
 
 express
  – Web framework for Node.js
 
 ws
- – WebSocket implementation
+ – WebSocket server implementation
 
 body-parser
- – Middleware for parsing incoming request bodies
+ – Middleware for parsing request bodies
 
-Future Enhancements
+7) Future Enhancements
 
-Development of a frontend interface
+Add frontend interface for managing issues
 
-User authentication and authorization
+Implement authentication and authorization
 
-Migration from JSON file storage to a database (e.g., MongoDB or PostgreSQL)
+Replace JSON storage with a database (e.g., MongoDB or PostgreSQL)
 
-Integration of email or messaging notifications
+Add notifications and activity logs
 
-Contributing
-
-Contributions are welcome. To contribute:
+8) Contributing
 
 Fork the repository.
 
